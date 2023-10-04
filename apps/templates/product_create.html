@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品登録</title>
+</head>
+<body>
+    <h1>商品登録</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+    <a href="{% url 'main_menu' %}">
+        <h4>戻る</h4>
+    </a>
+</body>
+</html>

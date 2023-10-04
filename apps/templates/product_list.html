@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品一覧</title>
+</head>
+<body>
+    <h1>商品一覧</h1>
+    <ul>
+        {% for product in products %}
+        <li>
+            <a href="{% url 'product_detail' product.id %}">
+                <h2>{{ product.name }}</h2>
+            </a>
+            <p>価格: ¥{{ product.price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'main_menu' %}">
+        <h4>戻る</h4>
+    </a>
+</body>
+</html>
