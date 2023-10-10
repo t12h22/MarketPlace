@@ -3,12 +3,9 @@ from .models import Product
 from .forms import ProductForm
 
 def main_menu(request):
-    return render(request, 'main_menu.html')
-
-def product_list(request):
     # 商品一覧をデータベースから取得
     products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+    return render(request, 'main_menu.html', {'products': products})
 
 def product_detail(request, product_id):
     # 商品の詳細情報をデータベースから取得

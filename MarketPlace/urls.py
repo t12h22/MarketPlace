@@ -12,9 +12,6 @@ urlpatterns = [
 
     # URL for admin
     path('admin/', admin.site.urls),
-
-    # URL for product list
-    path('product/list/', views.product_list, name='product_list'),
     
     # URL for product detail
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),

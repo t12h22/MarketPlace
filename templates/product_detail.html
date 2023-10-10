@@ -5,14 +5,14 @@
 </head>
 <body>
     <h1>{{ product.name }}の詳細情報</h1>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="200">
     <p>価格: ¥{{ product.price }}</p>
     <!-- <p>カテゴリー: {{ product.category }}</p> -->
     <p>{{ product.description }}</p>
     <a href="{% url 'product_delete' product.id %}">
         <h4>削除</h4>
     </a>
-    <a href="{% url 'product_list' %}">
+    <a href="{% url 'main_menu' %}">
         <h4>戻る</h4>
     </a>
 </body>
