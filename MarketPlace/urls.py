@@ -21,6 +21,9 @@ urlpatterns = [
 
     # URL for product delete
     path('product/<int:product_id>/delete/', views.product_delete, name='product_delete'),
+
+    # URL for register
+    path('register', views.register, name='register'),
 ]
 
 if settings.DEBUG:

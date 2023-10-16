@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
 from .forms import ProductForm
+from .forms import UserRegistrationForm
 
 def main_menu(request):
     # 商品一覧をデータベースから取得
@@ -28,3 +29,14 @@ def product_delete(request, product_id):
         product.delete()
         return redirect('main_menu')
     return render(request, 'product_delete.html', {'product': product})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # ユーザーを登録後のリダイレクト先を設定します
+            return redirect('main_menu')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'register.html', {'form': form})

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 import os
 
 class Product(models.Model):
@@ -9,9 +10,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        app_label = 'MarketPlace' 
 
     def __str__(self):
         return self.name
@@ -25,3 +23,8 @@ class Product(models.Model):
             if os.path.exists(file_path):
                 os.remove(file_path)
         super(Product, self).delete(*args, **kwargs)
+
+class CustomUser(AbstractUser):
+    # 追加のフィールドをここに定義します
+    # 例: profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    pass

@@ -6,11 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <title>ホーム</title>
+
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+            background-color: #333;
+            color: #fff;
+            padding: 0 20px;
+        }
+        .right-text {
+            font-size: 20px; /* 文字の大きさを指定 */
+            color: #fff; /* 文字の色を白に指定 */
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <h1>Market Place</h1>
+        <a href="{% url 'register' %}">
+            <div class="right-text">sign up</div>
+        </a>
     </header>
 
     <div class="product-list">
