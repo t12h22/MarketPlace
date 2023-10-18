@@ -1,5 +1,8 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Register</button>
+    <button type="submit">登録</button>
+    <a href="{% url 'main_menu' %}">
+        <h4>戻る</h4>
+    </a>
 </form>
