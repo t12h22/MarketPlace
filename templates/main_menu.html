@@ -18,7 +18,7 @@
             padding: 0 20px;
         }
         .right-text {
-            font-size: 20px; /* 文字の大きさを指定 */
+            font-size: 30px; /* 文字の大きさを指定 */
             color: #fff; /* 文字の色を白に指定 */
         }
     </style>
@@ -27,9 +27,20 @@
 <body>
     <header>
         <h1>Market Place</h1>
-        <a href="{% url 'register' %}">
-            <div class="right-text">sign up</div>
-        </a>
+        <div class="right-text">
+            {% if user.id  %}
+                <a href="{% url 'logout' %}">
+                    <span>logout</span>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <span>sign in</span>
+                </a>
+                <a href="{% url 'create' %}">
+                    <span>sign up</span>
+                </a>   
+            {% endif %}
+        </div>
     </header>
 
     <div class="product-list">
@@ -46,9 +57,11 @@
         {% endfor %}
     </div>
 
-    <a href="{% url 'product_create' %}">
-        <h2>商品登録</h2>
-    </a>
+    {% if user.id  %}
+        <a href="{% url 'product_create' %}">
+            <h2>商品登録</h2>
+        </a>
+    {% endif %}
 </body>
 
 </html>
