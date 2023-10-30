@@ -21,6 +21,22 @@
             font-size: 30px; /* 文字の大きさを指定 */
             color: #fff; /* 文字の色を白に指定 */
         }
+        .container {
+            text-align: right;
+        }
+        .square {
+            display: inline-block;
+            padding: 10px 20px; /* ボタンの内側の余白 */
+            background-color: #FFA500; /* オレンジの背景色 */
+            color: white; /* ボタンのテキスト色 */
+            text-align: center;
+            text-decoration: none; /* テキストの下線を削除 */
+            font-size: 16px; /* テキストのサイズ */
+            border: none; /* ボーダーを削除 */
+            border-radius: 5px; /* ボタンの角を丸くする */
+            cursor: pointer; /* ホバー時にカーソルをポインターに変更 */
+            margin: 0 2px; /* 左右のマージンを追加 */
+        }
     </style>
 </head>
 
@@ -43,6 +59,17 @@
         </div>
     </header>
 
+    <div class="container">
+        {% if user.id  %}
+            <a href="{% url 'product_create' %}" class="square">
+                <span>商品登録</span>
+            </a>
+            <a href="{% url 'my_product' %}" class="square">
+                <span>登録した商品</span>
+            </a>
+        {% endif %}
+    </div>
+
     <div class="product-list">
         {% for product in products %}
         <div class="product">
@@ -56,12 +83,6 @@
         </div>
         {% endfor %}
     </div>
-
-    {% if user.id  %}
-        <a href="{% url 'product_create' %}">
-            <h2>商品登録</h2>
-        </a>
-    {% endif %}
 </body>
 
 </html>

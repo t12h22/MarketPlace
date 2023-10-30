@@ -36,6 +36,16 @@ def product_delete(request, product_id):
         return redirect('main_menu')
     return render(request, 'product_delete.html', {'product': product})
 
+def my_product(request):
+    # 商品一覧をデータベースから取得
+    products = Product.objects.all()
+    return render(request, 'my_product.html', {'products': products})
+
+def my_product_detail(request, product_id):
+    # 商品の詳細情報をデータベースから取得
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'my_product_detail.html', {'product': product})
+
 #アカウント作成
 class Create_account(CreateView):
     def post(self, request, *args, **kwargs):

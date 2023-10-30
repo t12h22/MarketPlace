@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <title>{{ product.user }}の登録商品</title>
+</head>
+
+<body>
+    <h1>登録した商品</h1>
+    <div class="product-list">
+        {% for product in products %}
+            {% if request.user == product.user %}
+                <div class="product">
+                    <li>
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <a href="{% url 'my_product_detail' product.id %}">
+                            <h2>{{ product.name }}</h2>
+                        </a>
+                        <p>価格: ¥{{ product.price }}</p>
+                    </li>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'main_menu' %}">
+        <h4>戻る</h4>
+    </a>
+</body>
+
+</html>

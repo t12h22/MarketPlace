@@ -23,14 +23,20 @@ urlpatterns = [
     # URL for product delete
     path('product/<int:product_id>/delete/', views.product_delete, name='product_delete'),
 
+    # URL for my product
+    path('product/myproduct', views.my_product, name='my_product'),
+
+    # URL for my product detail
+    path('product/myproduct/<int:product_id>/', views.my_product_detail, name='my_product_detail'),
+
     # URL for creating account
-    path('create/', views.create_account, name='create'),
+    path('account/create/', views.create_account, name='create'),
 
     # URL for login
-    path('login/', views.account_login, name='login'),
+    path('account/login/', views.account_login, name='login'),
 
     # URL for logout
-    path('logout/', views.CustomLogoutView.as_view(), name='logout'),
+    path('account/logout/', views.CustomLogoutView.as_view(), name='logout'),
 ]
 
 if settings.DEBUG:
