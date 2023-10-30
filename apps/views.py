@@ -22,6 +22,7 @@ def product_create(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             return redirect('main_menu')
     else:
@@ -47,7 +48,7 @@ class Create_account(CreateView):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/')
+            return redirect('main_menu')
         return render(request, 'create.html', {'form': form,})
 
     def get(self, request, *args, **kwargs):
@@ -64,7 +65,7 @@ class Account_login(View):
             username = form.cleaned_data.get('username')
             user = User.objects.get(username=username)
             login(request, user)
-            return redirect('/')
+            return redirect('main_menu')
         return render(request, 'login.html', {'form': form,})
 
     def get(self, request, *args, **kwargs):
