@@ -35,7 +35,7 @@
             border: none; /* ボーダーを削除 */
             border-radius: 5px; /* ボタンの角を丸くする */
             cursor: pointer; /* ホバー時にカーソルをポインターに変更 */
-            margin: 0 2px; /* 左右のマージンを追加 */
+            margin: 0 0.1px; /* 左右のマージンを追加 */
         }
     </style>
 </head>
@@ -43,6 +43,9 @@
 <body>
     <header>
         <h1>Market Place</h1>
+        {% if user.id %}
+            <p>こんにちは{{ request.user }}さん</p>
+        {% endif %}
         <div class="right-text">
             {% if user.id  %}
                 <a href="{% url 'logout' %}">
@@ -62,10 +65,10 @@
     <div class="container">
         {% if user.id  %}
             <a href="{% url 'product_create' %}" class="square">
-                <span>商品登録</span>
+                <span>新しく商品を出品する</span>
             </a>
             <a href="{% url 'my_product' %}" class="square">
-                <span>登録した商品</span>
+                <span>出品した商品を見る</span>
             </a>
         {% endif %}
     </div>
