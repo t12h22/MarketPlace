@@ -37,6 +37,9 @@ urlpatterns = [
 
     # URL for logout
     path('account/logout/', views.CustomLogoutView.as_view(), name='logout'),
+
+    path('product/payment', views.payment, name='payment'),
+    path('product/thanks/', views.thanks, name='thanks'),
 ]
 
 if settings.DEBUG:

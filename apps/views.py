@@ -1,3 +1,4 @@
+import stripe
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.shortcuts import render, redirect
@@ -5,6 +6,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView
 from django.views.generic import CreateView
+from django.conf import settings
 from .forms import ProductForm,UserCreateForm, LoginForm
 from .models import Product
 
@@ -87,3 +89,35 @@ account_login = Account_login.as_view()
 class CustomLogoutView(LogoutView):
     # ログアウト後にリダイレクトする先のURLパターン名を指定
     next_page = 'main_menu' 
+
+def payment(request):
+    #StripeのAPIキーを登録する
+    stripe.api_key = settings.STRIPE_API_KEY
+    
+    #今回は支払い額を10,000円とする
+    amount=10000
+
+    #PaymentIntentを作成する
+    intent = stripe.PaymentIntent.create(
+        amount=amount,
+        currency='jpy',
+        description='テスト支払い',
+        payment_method_types=["card"],
+    )
+    
+    #作成したPaymentIntentからclient_secretを取得する
+    client_secret = intent["client_secret"]  
+    
+    #テンプレートと渡すデータを指定する
+    template_name = "payment.html"
+    context = {
+        "amount": amount,
+        "client_secret": client_secret,
+    }
+
+    return render(request, template_name, context)
+
+#単純に支払い完了ページを表示する処理
+def thanks(request):
+    template_name = "thanks.html"
+    return render(request, template_name)

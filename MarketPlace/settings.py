@@ -91,6 +91,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Email設定
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -117,3 +120,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripeのパブリックキー
+STRIPE_PUBLIC_KEY = 'ここにSTRIPE_PUBLIC_KEYを入力'
+
+# Stripeのシークレットキー
+STRIPE_SECRET_KEY = 'ここにSTRIPE_SECRET_KEYを入力'
+
+# StripeのWebhookのシークレットキー
+STRIPE_WEBHOOK_SECRET = 'ここにSTRIPE_WEBHOOK_SECRETを入力（現時点でここはまだ修正しなくてOKです）'
